@@ -18,10 +18,6 @@ before_deploy:
   - mv nomad-hackathon-backend.zip deploy/nomad-hackathon-backend.zip 
 
 
-notifications:
-    email:
-        recipients:
-        - me@wheejuni.com
 deploy: 
   - provider: s3 
     access_key_id: $AWS_ACCESS_KEY 
@@ -35,18 +31,22 @@ deploy:
         repo: seulgiwendy/nomad-hackathon-backend
         branch: master
 
- - provider: codedeploy
-   access_key_id: $AWS_ACCESS_KEY
-   secret_access_key: $AWS_SECRET_KEY
-   bucket: nomad-hackathon-backend-jar
-   key: nomad-hackathon-backend.zip
-   bundle_type: zip
-   application: nomad-hackathon
-   deployment_group: nomad-hackathon-group
-   region: ap-northeast-2
-   wait-until-deployed: true
-   on:
-     repo: seulgiwendy/nomad-hackathon-backend
-     branch: master
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: nomad-hackathon-backend-jar
+    key: nomad-hackathon-backend.zip
+    bundle_type: zip
+    application: nomad-hackathon
+    deployment_group: nomad-hackathon-group
+    region: ap-northeast-2
+    wait-until-deployed: true
+    on:
+        repo: seulgiwendy/nomad-hackathon-backend
+        branch: master
 
 
+notifications:
+    email:
+        recipients:
+        - me@wheejuni.com
