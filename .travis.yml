@@ -12,6 +12,12 @@ cache:
 
 script: "./mvnw clean package"
 
+before_deploy: 
+  - zip -r nomad-hackathon-backend * 
+  - mkdir -p deploy 
+  - mv nomad-hackathon-backend.zip deploy/nomad-hackathon-backend.zip 
+
+
 notifications:
     email:
         recipients:
@@ -28,5 +34,19 @@ deploy:
     on: 
         repo: seulgiwendy/nomad-hackathon-backend
         branch: master
+
+ - provider: codedeploy
+   access_key_id: $AWS_ACCESS_KEY
+   secret_access_key: $AWS_SECRET_KEY
+   bucket: nomad-hackathon-backend-jar
+   key: nomad-hackathon-backend.zip
+   bundle_type: zip
+   application: nomad-hackathon
+   deployment_group: nomad-hackathon-group
+   region: ap-northeast-2
+   wait-until-deployed: true
+   on:
+     repo: seulgiwendy/nomad-hackathon-backend
+     branch: master
 
 
