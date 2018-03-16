@@ -35,7 +35,7 @@ deploy:
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
     bucket: nomad-hackathon-backend-jar
-    key: nomad-hackathon-backend.zip
+    key: deploy/nomad-hackathon-backend.zip
     bundle_type: zip
     application: nomad-hackathon
     deployment_group: nomad-hackathon-group
