@@ -12,10 +12,5 @@ public class PrintboardApplication {
 		SpringApplication.run(PrintboardApplication.class, args);
 	}
 
-	@Bean
-    CommandLineRunner commandLineRunner() {
-	    return args -> {
-	      System.out.println("something changed! please build me!");
-        };
-    }
+
 }
