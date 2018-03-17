@@ -11,6 +11,8 @@ public class PrintboardApplication {
 
     public static final String APPLICATION_LOCATIONS = "spring.config.location="
             + "classpath:application.yml,"
+            + "classpath:application-set1.yml,"
+            + "classpath:application-set2.yml,"
             + "/home/ubuntu/app/config/printboard/prod-config.yml";
 
 	public static void main(String[] args) {
