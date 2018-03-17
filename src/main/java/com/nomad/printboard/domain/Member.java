@@ -1,0 +1,28 @@
+package com.nomad.printboard.domain;
+
+import lombok.*;
+
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor(access = AccessLevel.PACKAGE)
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
+@Builder
+public class Member {
+
+    @Id
+    @GeneratedValue
+    @Column(name = "MEMBER_UID")
+    private long id;
+
+    private String memberId;
+    private String password;
+
+    private String name;
+
+    @OneToMany(mappedBy = "member")
+    private List<Paper> papers;
+}

@@ -14,6 +14,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         security
                 .authorizeRequests()
                 .antMatchers("/profile")
+                .permitAll()
+                .antMatchers("/h2-console*")
                 .permitAll();
     }
 }
