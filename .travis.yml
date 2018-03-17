@@ -50,3 +50,5 @@ notifications:
     email:
         recipients:
         - me@wheejuni.com
+    slack: 
+        codesquad-members:t7B1WHfsCgrRfipipWXNLKnQ
