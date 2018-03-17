@@ -5,3 +5,4 @@ data class MemberJoinDocument(
         val password: String = "",
         val name: String = ""
 )
+
