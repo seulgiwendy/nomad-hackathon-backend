@@ -1,5 +1,6 @@
 package com.nomad.printboard.domain;
 
+import com.nomad.printboard.security.MemberRoles;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,6 +24,12 @@ public class Member {
 
     private String name;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "MEMBER_ROLE")
+    private MemberRoles roles;
+
     @OneToMany(mappedBy = "member")
     private List<Paper> papers;
+
+
 }
