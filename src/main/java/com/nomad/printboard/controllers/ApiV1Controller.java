@@ -32,10 +32,7 @@ public class ApiV1Controller {
     @Autowired
     private PaperService paperService;
 
-    @GetMapping("/profile")
-    public String getProfile() {
-        return Arrays.stream(environment.getActiveProfiles()).findFirst().orElse("no profile found!");
-    }
+
 
     @GetMapping("/userinfo")
     @PreAuthorize("hasRole('ROLE_USER')")

@@ -34,7 +34,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .requestMatchers()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/h2-console/**", "/api/v1/userjoin**").permitAll()
+                .antMatchers("/h2-console/**", "/api/v1/userjoin**", "/profile").permitAll()
                 .and()
                 .headers()
                 .frameOptions()
