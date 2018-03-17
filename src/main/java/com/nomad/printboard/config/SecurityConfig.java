@@ -11,9 +11,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(HttpSecurity security) throws Exception {
+
         security
+                .csrf()
+                .disable();
+
+        security
+                .headers()
+                .frameOptions()
+                .disable();
+
+        security
+                .requestMatchers()
+                .and()
                 .authorizeRequests()
-                .antMatchers("/profile")
+                .antMatchers( "/h2-console/**")
                 .permitAll();
+
     }
 }
