@@ -2,8 +2,10 @@ package com.nomad.printboard.exceptions.model;
 
 import com.nomad.printboard.exceptions.ApplicationException;
 import com.nomad.printboard.exceptions.ErrorCodes;
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+@Getter
 public class BaseModelException extends ApplicationException {
 
     private String message;
