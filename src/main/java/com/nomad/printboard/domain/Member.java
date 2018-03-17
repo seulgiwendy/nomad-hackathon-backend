@@ -40,8 +40,11 @@ public class Member {
             this.papers = Lists.newArrayList();
         }
 
+        if(paper.getMember() == null) {
+            paper.setMember(this);
+        }
+
         this.papers.add(paper);
-        paper.setMember(this);
     }
 
 

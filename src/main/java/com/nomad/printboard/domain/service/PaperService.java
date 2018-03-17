@@ -4,6 +4,7 @@ import com.nomad.printboard.documents.model.NewPaperDocument;
 import com.nomad.printboard.domain.Member;
 import com.nomad.printboard.domain.Paper;
 import com.nomad.printboard.domain.repositories.PaperRepository;
+import com.nomad.printboard.exceptions.model.DuplicatedPaperTitleException;
 import com.nomad.printboard.security.JwtParsingUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -28,6 +29,10 @@ public class PaperService {
     private JwtParsingUtils parsingUtils;
 
     public Paper savePaper(NewPaperDocument document, OAuth2Authentication authentication) {
+
+        if(paperRepository.findByTitle(document.getTitle()).isPresent()) {
+            throw new DuplicatedPaperTitleException("이미 같은 제목의 문서가 존재합니다.");
+        }
 
         Paper paper = Paper.builder()
                 .title(document.getTitle())

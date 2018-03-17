@@ -4,6 +4,7 @@ import com.nomad.printboard.documents.security.MemberJoinDocument;
 import com.nomad.printboard.domain.Member;
 import com.nomad.printboard.domain.repositories.MemberRepository;
 import com.nomad.printboard.exceptions.model.DuplicatedUserinfoException;
+import com.nomad.printboard.security.MemberRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,7 @@ public class MemberService {
         Member member = Member.builder()
                 .name(document.getName())
                 .memberId(document.getMemberEmail())
+                .roles(MemberRoles.USER)
                 .password(passwordEncoder.encode(document.getPassword()))
                 .build();
 
