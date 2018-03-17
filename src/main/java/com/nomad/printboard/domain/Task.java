@@ -12,4 +12,7 @@ public class Task{
     @GeneratedValue
     @Column(name = "TASK_ID")
     private long id;
+
+    @Column(name = "TASK_TITLE")
+    private String title;
 }
