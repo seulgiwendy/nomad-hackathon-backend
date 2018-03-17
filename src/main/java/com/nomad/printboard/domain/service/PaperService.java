@@ -1,6 +1,7 @@
 package com.nomad.printboard.domain.service;
 
 import com.nomad.printboard.documents.model.NewPaperDocument;
+import com.nomad.printboard.documents.model.PaperQueryDocument;
 import com.nomad.printboard.domain.Member;
 import com.nomad.printboard.domain.Paper;
 import com.nomad.printboard.domain.repositories.PaperRepository;
@@ -49,6 +50,12 @@ public class PaperService {
 
     public List<Paper> getAllPapers(Member member) {
         return member.getPapers();
+    }
+
+    public List<Paper> getSearchedPapers(OAuth2Authentication authentication, PaperQueryDocument document) {
+        Member member = parsingUtils.getLoggedInMember(authentication);
+
+        return paperRepository.findByTitleContainingAndMember(document.getQuery(), member);
     }
 
 }
