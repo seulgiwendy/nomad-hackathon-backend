@@ -2,7 +2,7 @@ package com.nomad.printboard.security.filters;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nomad.printboard.documents.FormLoginDocument;
+import com.nomad.printboard.documents.security.FormLoginDocument;
 import com.nomad.printboard.domain.SecurityMember;
 import com.nomad.printboard.exceptions.ErrorCodes;
 import com.nomad.printboard.exceptions.security.InternalSecurityProcessingException;

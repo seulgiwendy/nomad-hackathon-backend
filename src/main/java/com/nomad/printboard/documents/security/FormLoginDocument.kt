@@ -1,4 +1,4 @@
-package com.nomad.printboard.documents
+package com.nomad.printboard.documents.security
 
 data class FormLoginDocument(
         val loginEmail: String = "",

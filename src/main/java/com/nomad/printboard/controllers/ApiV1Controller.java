@@ -1,16 +1,19 @@
 package com.nomad.printboard.controllers;
 
+import com.nomad.printboard.documents.security.MemberJoinDocument;
+import com.nomad.printboard.domain.Member;
+import com.nomad.printboard.domain.service.MemberService;
 import com.nomad.printboard.security.JwtParsingUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 
 @RestController
+@RequestMapping("/api/v1")
 public class ApiV1Controller {
 
     @Autowired
@@ -18,6 +21,9 @@ public class ApiV1Controller {
 
     @Autowired
     private JwtParsingUtils jwtParsingUtils;
+
+    @Autowired
+    private MemberService memberService;
 
     @GetMapping("/profile")
     public String getProfile() {
@@ -28,5 +34,10 @@ public class ApiV1Controller {
     @PreAuthorize("hasRole('ROLE_USER')")
     public String getUsername(OAuth2Authentication authentication) {
         return jwtParsingUtils.getLoggedInMember(authentication).getName();
+    }
+
+    @PostMapping("/userjoin")
+    public Member joinMember(@RequestBody MemberJoinDocument document) {
+        return memberService.joinMember(document);
     }
 }

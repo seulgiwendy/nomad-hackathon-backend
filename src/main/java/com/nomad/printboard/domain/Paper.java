@@ -1,8 +1,12 @@
 package com.nomad.printboard.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Getter
@@ -26,8 +30,23 @@ public class Paper extends BaseEntity {
     @Column(name = "PAPER_FILE_LOCATION")
     private String fileLocation;
 
-    @ManyToOne
+    @Column(name = "PAPER_DUE_DATE")
+    private LocalDateTime duedate;
+
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "OWNER_MEMBER_UID")
+    @JsonIgnore
     private Member member;
 
+    @JsonProperty(value = "createdDate")
+    public String getCreatedDate(DateTimeFormatter formatter) {
+
+        return super.getCreatedTime().format(formatter);
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+
+        member.addPaper(this);
+    }
 }

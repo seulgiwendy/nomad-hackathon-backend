@@ -1,6 +1,6 @@
 package com.nomad.printboard.security;
 
-import com.nomad.printboard.documents.FormLoginDocument;
+import com.nomad.printboard.documents.security.FormLoginDocument;
 import com.nomad.printboard.domain.SecurityMember;
 import com.nomad.printboard.exceptions.security.BadCredentialsException;
 import com.nomad.printboard.exceptions.security.BaseSecurityException;

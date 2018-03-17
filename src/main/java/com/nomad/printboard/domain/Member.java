@@ -1,5 +1,7 @@
 package com.nomad.printboard.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.collect.Lists;
 import com.nomad.printboard.security.MemberRoles;
 import lombok.*;
 
@@ -20,6 +22,8 @@ public class Member {
     private long id;
 
     private String memberId;
+
+    @JsonIgnore
     private String password;
 
     private String name;
@@ -28,8 +32,17 @@ public class Member {
     @Column(name = "MEMBER_ROLE")
     private MemberRoles roles;
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Paper> papers;
+
+    public void addPaper(Paper paper) {
+        if(this.papers == null) {
+            this.papers = Lists.newArrayList();
+        }
+
+        this.papers.add(paper);
+        paper.setMember(this);
+    }
 
 
 }
