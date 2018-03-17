@@ -15,6 +15,7 @@ public class BaseModelException extends ApplicationException {
 
     public BaseModelException(String messsage) {
         super(messsage);
+        this.message = messsage;
         this.httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
         this.errorCodes = ErrorCodes.MODEL_ITEM_NOT_FOUND;
     }

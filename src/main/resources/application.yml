@@ -21,3 +21,11 @@ spring:
     username: sa
     data-password:
 
+oauth:
+  client:
+    id: printboard-api
+  resource:
+    id: printboard-resource
+  access_token:
+    signingkey: printboard
+
