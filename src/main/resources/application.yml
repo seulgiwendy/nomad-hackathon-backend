@@ -1,14 +1,7 @@
-oauth:
-  client:
-    id: printboard-api
-  resource:
-    id: printboard-resource
-  access_token:
-    signingkey: printboard
 
-pring:
+spring:
   profiles:
-    active: set1
+    active: local
 
 ---
 

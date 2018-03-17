@@ -26,7 +26,6 @@ public class Member {
     @JsonIgnore
     private String password;
 
-    @Column(columnDefinition = "VARCHAR(64) CHARACTER SET UTF8 NOT NULL")
     private String name;
 
     @Enumerated(EnumType.STRING)
