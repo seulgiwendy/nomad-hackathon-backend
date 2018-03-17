@@ -1,5 +1,8 @@
 package com.nomad.printboard.exceptions;
 
+import lombok.Getter;
+
+@Getter
 public enum ErrorCodes {
 
     GENERAL(10, "알 수 없는 문제"),

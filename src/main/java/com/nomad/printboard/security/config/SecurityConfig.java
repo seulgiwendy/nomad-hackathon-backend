@@ -1,6 +1,7 @@
 package com.nomad.printboard.security.config;
 
 import com.nomad.printboard.security.MemberDetailsService;
+import com.nomad.printboard.security.filters.AuthenticationExceptionProcessingFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -43,6 +44,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         bean.setOrder(Ordered.HIGHEST_PRECEDENCE + 1);
 
         return bean;
+    }
+
+    @Bean
+    public FilterRegistrationBean securityExceptionFilter() {
+        FilterRegistrationBean registrationBean = new FilterRegistrationBean(new AuthenticationExceptionProcessingFilter());
+        registrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+
+        return registrationBean;
     }
 
     @Bean

@@ -24,7 +24,7 @@ public class Paper extends BaseEntity {
     @Column(name = "PAPER_ID")
     private long id;
 
-    @Column(name = "PAPER_TITLE")
+    @Column(name = "PAPER_TITLE",   columnDefinition = "VARCHAR(64) CHARACTER SET UTF8 NOT NULL")
     private String title;
 
     @Column(name = "PAPER_IS_URGENT")
