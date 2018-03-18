@@ -2,6 +2,7 @@ package com.nomad.printboard.controllers;
 
 import com.nomad.printboard.documents.model.NewPaperDocument;
 import com.nomad.printboard.documents.model.PaperListDocument;
+import com.nomad.printboard.documents.security.CredentialsTransferDocument;
 import com.nomad.printboard.documents.security.MemberJoinDocument;
 import com.nomad.printboard.domain.Member;
 import com.nomad.printboard.domain.Paper;
@@ -9,6 +10,7 @@ import com.nomad.printboard.domain.service.MemberService;
 import com.nomad.printboard.domain.service.PaperService;
 import com.nomad.printboard.security.JwtParsingUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -27,6 +29,12 @@ public class ApiV1Controller {
     @Autowired
     private PaperService paperService;
 
+    @Value("${aws.frontend.access_key}")
+    private String accessKey;
+
+    @Value("${aws.frontend.secret_key}")
+    private String secretKey;
+
 
     @PostMapping("/userjoin")
     public Member joinMember(@RequestBody MemberJoinDocument document) {
@@ -44,5 +52,11 @@ public class ApiV1Controller {
     @PreAuthorize("hasRole('ROLE_USER')")
     public Paper addNewPaper(OAuth2Authentication authentication, @RequestBody NewPaperDocument document) {
         return paperService.savePaper(document, authentication);
+    }
+
+    @GetMapping("/awscredentials")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public CredentialsTransferDocument getAwsAccessInfo() {
+        return new CredentialsTransferDocument(accessKey, secretKey);
     }
 }
