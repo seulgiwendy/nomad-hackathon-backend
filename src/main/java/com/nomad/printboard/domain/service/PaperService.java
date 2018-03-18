@@ -1,6 +1,7 @@
 package com.nomad.printboard.domain.service;
 
 import com.nomad.printboard.documents.model.NewPaperDocument;
+import com.nomad.printboard.documents.model.PaperListDocument;
 import com.nomad.printboard.documents.model.PaperQueryDocument;
 import com.nomad.printboard.domain.Member;
 import com.nomad.printboard.domain.Paper;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -50,6 +52,14 @@ public class PaperService {
 
     public List<Paper> getAllPapers(Member member) {
         return member.getPapers();
+    }
+
+    public List<PaperListDocument> getAllPapersDocument(OAuth2Authentication auth) {
+        Member member = parsingUtils.getLoggedInMember(auth);
+
+        return member.getPapers().stream()
+                .map(p -> new PaperListDocument(p.getTitle(), p.getDuedate().format(this.dateTimeFormatter), p.getFileLocation(), p.isUrgent(), p.getCreatedDate(this.dateTimeFormatter)))
+                .collect(Collectors.toList());
     }
 
     public List<Paper> getSearchedPapers(OAuth2Authentication authentication, PaperQueryDocument document) {
