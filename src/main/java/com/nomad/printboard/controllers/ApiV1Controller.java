@@ -1,6 +1,7 @@
 package com.nomad.printboard.controllers;
 
 import com.nomad.printboard.documents.model.NewPaperDocument;
+import com.nomad.printboard.documents.model.PaperListDocument;
 import com.nomad.printboard.documents.security.MemberJoinDocument;
 import com.nomad.printboard.domain.Member;
 import com.nomad.printboard.domain.Paper;
@@ -21,24 +22,11 @@ import java.util.List;
 public class ApiV1Controller {
 
     @Autowired
-    private Environment environment;
-
-    @Autowired
-    private JwtParsingUtils jwtParsingUtils;
-
-    @Autowired
     private MemberService memberService;
 
     @Autowired
     private PaperService paperService;
 
-
-
-    @GetMapping("/userinfo")
-    @PreAuthorize("hasRole('ROLE_USER')")
-    public String getUsername(OAuth2Authentication authentication) {
-        return jwtParsingUtils.getLoggedInMember(authentication).getName();
-    }
 
     @PostMapping("/userjoin")
     public Member joinMember(@RequestBody MemberJoinDocument document) {
@@ -47,10 +35,9 @@ public class ApiV1Controller {
 
     @GetMapping("/papers")
     @PreAuthorize("hasRole('ROLE_USER')")
-    public List<Paper> getAllPapers(OAuth2Authentication authentication) {
-        Member activeMember = jwtParsingUtils.getLoggedInMember(authentication);
+    public List<PaperListDocument> getAllPapers(OAuth2Authentication authentication) {
 
-        return paperService.getAllPapers(activeMember);
+        return paperService.getAllPapersDocument(authentication);
     }
 
     @PostMapping("/papers")

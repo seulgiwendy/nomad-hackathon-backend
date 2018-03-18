@@ -3,6 +3,7 @@ package com.nomad.printboard.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Objects;
+import com.nomad.printboard.documents.model.PaperListDocument;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -55,6 +56,7 @@ public class Paper extends BaseEntity {
         }
         member.addPaper(this);
     }
+
 
     @Override
     public boolean equals(Object o) {
