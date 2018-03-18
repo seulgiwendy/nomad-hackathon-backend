@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         source.registerCorsConfiguration("/**", configuration);
 
         FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
-        bean.setOrder(Ordered.HIGHEST_PRECEDENCE + 1);
+        bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
 
         return bean;
     }
@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public FilterRegistrationBean securityExceptionFilter() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean(new AuthenticationExceptionProcessingFilter());
-        registrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+        registrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE + 1);
 
         return registrationBean;
     }
