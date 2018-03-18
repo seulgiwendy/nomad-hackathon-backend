@@ -12,10 +12,13 @@ import com.nomad.printboard.security.JwtParsingUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 import java.util.List;
 
@@ -39,6 +42,13 @@ public class ApiV1Controller {
     @PostMapping("/userjoin")
     public Member joinMember(@RequestBody MemberJoinDocument document) {
         return memberService.joinMember(document);
+    }
+
+    @PostMapping("/dumbfile")
+    public String getDumbUpload(MultipartFile file, HttpServletResponse res) {
+        res.setStatus(HttpStatus.OK.value());
+
+        return file.getName();
     }
 
     @GetMapping("/papers")
