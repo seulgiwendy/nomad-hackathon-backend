@@ -45,10 +45,10 @@ public class ApiV1Controller {
     }
 
     @PostMapping("/dumbfile")
-    public String getDumbUpload(MultipartFile file, HttpServletResponse res) {
+    public String getDumbUpload(HttpServletResponse res) {
         res.setStatus(HttpStatus.OK.value());
 
-        return file.getName();
+        return null;
     }
 
     @GetMapping("/papers")
