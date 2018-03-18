@@ -22,6 +22,11 @@ spring:
     username: sa
     data-password:
 
+aws:
+  frontend:
+    access_key: fake_access_key
+    secret_key: no_one_tells_a_secret
+
 oauth:
   client:
     id: printboard-api
