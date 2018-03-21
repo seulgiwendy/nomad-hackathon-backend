@@ -19,7 +19,7 @@ public class PrintboardApplication {
             + "classpath:application.yml,"
             + "classpath:application-set1.yml,"
             + "classpath:application-set2.yml,"
-            + "/home/ubuntu/app/config/printboard/prod-config.yml";
+            + "/home/ubuntu/app/nonstop/config/printboard-config.yml";
 
 	public static void main(String[] args) {
 		new SpringApplicationBuilder(PrintboardApplication.class)
