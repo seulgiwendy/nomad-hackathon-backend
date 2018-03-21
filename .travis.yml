@@ -22,8 +22,10 @@ deploy:
   - provider: s3 
     access_key_id: $AWS_ACCESS_KEY 
     secret_access_key: $AWS_SECRET_KEY 
-    bucket: nomad-hackathon-backend-jar 
-    region: ap-northeast-2 
+    bucket: printboard-backend-deploy
+    region: ap-northeast-2
+    local_dir: deploy
+
     skip_cleanup: true 
     acl: public_read 
     wait-until-deployed: true 
@@ -34,11 +36,11 @@ deploy:
   - provider: codedeploy
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
-    bucket: nomad-hackathon-backend-jar
+    bucket: printboard-backend-deploy
     key: deploy/nomad-hackathon-backend.zip
     bundle_type: zip
-    application: nomad-hackathon
-    deployment_group: nomad-hackathon-group
+    application: codesquad-library
+    deployment_group: codesquad-library-backend
     region: ap-northeast-2
     wait-until-deployed: true
     on:
