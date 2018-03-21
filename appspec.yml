@@ -2,10 +2,10 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ubuntu/app/nonstop/build/printboard
+    destination: /home/ubuntu/app/nonstop/build-printboard
 
 hooks:
   AfterInstall:
     - location: execute-deploy.sh
-      timeout: 180
+      timeout: 240
 
